@@ -8,14 +8,22 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "build": "webpack --watch"
+    "build": "webpack --watch",
+    "start": "nodemon ./server/index.js"
   },
   "dependencies": {
+    "Faker": "^0.7.2",
+    "express": "^4.17.1",
+    "faker": "^4.1.0",
+    "mysql": "^2.17.1",
+    "mysql2": "^1.6.5",
     "nodemon": "^1.19.1",
+    "pug": "^2.0.4",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-redux": "^7.1.0",
-    "redux": "^4.0.4"
+    "redux": "^4.0.4",
+    "sequelize": "^5.16.0"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
