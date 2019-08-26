@@ -9,7 +9,9 @@
   },
   "scripts": {
     "build": "webpack --watch",
-    "start": "nodemon ./server/index.js"
+    "start": "nodemon ./server/index.js",
+    "emptyDB": "mysql -u root -p < database/Schema.sql",
+    "seed": "node ./database/seed.js"
   },
   "dependencies": {
     "Faker": "^0.7.2",

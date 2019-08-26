@@ -29,19 +29,19 @@ XX  reservations table
 XXGenerate rand om data to be put into database
 XX  100 listing with random data put in
 XX  1000 random reserved dates
-Plan:
-  I. SETUP CLIENT, SERVER, AND DATABASE
+XXPlan:
+XXI. SETUP CLIENT, SERVER, AND DATABASE
 XX  1. Make a working server and client
 XX   a. make a working server using express
 XX      1. should be able to get test data using a get request sent to the root directory
 XX   b. make a working client server using React
 XX      1. should be able to render the html page with test text
 XX      2. should be able to render test text with React component placed inside
-    2. Integrate server and database
-      a. make necessary API paths to server and database
-        1. should be able to GET listing data from database and parse into a JSON object
-        2. should be able to GET reservation dates and parse into a JSON object (array of dates)
-
+XX  2. Integrate server and database
+XX    a. make necessary API paths to server and database
+XX      1. should be able to GET listing data from database and parse into a JSON object
+XX      2. should be able to GET reservation dates and parse into a JSON object (array of dates)
+XX
   II.APP DESIGN (OUTER COMPONENT)
     1. Make the outside borders
       a. Use flexbox to create a parent container

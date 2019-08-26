@@ -47,13 +47,13 @@ module.exports.generateReservations = function (number) {
 //HAS TO BE IN SQL FORMAT YYYY-MM-DD
     let startD = new Date();
     startD.setMonth(startD.getMonth() + getRandomNum(-1, 2))
-    startD.setDate(getRandomNum(1,30) + 1)
+    startD.setDate(getRandomNum(1,29) + 1)
     //object start date with year month and day
     let startDate = {};
     startDate.year = 2019;
     startDate.month = ('0' + (startD.getMonth() + 1)).slice(-2)
     startDate.day = ('0' + (startD.getDate())).slice(-2)
-    let stayTime = getRandomNum(0, 4);
+    let stayTime = getRandomNum(1, 4);
     let endD = new Date(startD.valueOf())
     endD.setDate(endD.getDate() + stayTime)
     //object endDate with year month and day

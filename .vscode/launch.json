@@ -9,7 +9,7 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceFolder}/database/seed.js"
+      "program": "${workspaceFolder}/.js"
     }
   ]
 }
