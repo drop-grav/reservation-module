@@ -14,7 +14,9 @@ const StyledDiv = styled.div`
   border: none;
   display:flex;
   background: white;
-
+  &:hover {
+    cursor: pointer;
+  };
 `;
 
 const Flag = styled.img`
@@ -37,7 +39,7 @@ const StyledReportWords = styled.div`
 function ReportListing (props) {
   return (
     <StyledDiv>
-      <StyledReportButton>
+      <StyledReportButton href="#">
         <Flag src="https://cdn.clipart.email/edf73ce7a4365cd5ca93f548690f2250_flag-outline-clip-art-at-clkercom-vector-clip-art-online-_546-597.png">
         </Flag>
         <StyledReportWords>Report this Listing</StyledReportWords>

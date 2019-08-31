@@ -16,6 +16,9 @@ background-color:  #ff3333;
 font-family:Roboto,Helvetica Neue,sans-serif;
 font-size: 17px;
 font-weight: bold;
+&:hover {
+  cursor: pointer;
+}
 `;
 
 const ReservedReminder = styled.div`

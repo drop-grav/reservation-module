@@ -13,7 +13,7 @@ function Reservations (props) {
   return (
     <StyledResOuter>
       <Dates/>
-      <Guests state = {props.state}/>
+      <Guests state = {props.state} onAdd = {props.onAdd} onSub = {props.onSub}/>
     </StyledResOuter>
   )
 }

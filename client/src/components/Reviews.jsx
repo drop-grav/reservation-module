@@ -41,7 +41,6 @@ function Reviews (props) {
     starsHalf.push("★")
     ratings--
   }
-  console.log(ratings, "this is ratings")
   return (
     <StyledDiv>
       <Stars>
