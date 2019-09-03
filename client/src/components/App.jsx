@@ -9,6 +9,7 @@ class App extends React.Component {
   constructor (props) {
     super (props);
     this.state = {
+//pulled from server
       cost: null,
       rating: null,
       ratingAmount: null,
@@ -18,21 +19,26 @@ class App extends React.Component {
       serviceFee: null,
       occupancyFee: null,
       daysMinimum: null,
+      reservations: null,
+//choices made in app
       adultsChosen: 1,
       childrenChosen: 0,
       infantsChosen: 0,
-      daysChosen: null,
+      startDate: null,
+      endDate: null,
     }
     this.onAddGuest = this.onAddGuest.bind(this);
     this.onSubGuest = this.onSubGuest.bind(this);
   }
+
   componentDidMount() {
     this.getListingdata()
+    this.getReservations()
   }
 
   getListingdata () {
     $.ajax({
-      url: 'http://localhost:3000/api/listingData/1',
+      url: 'http://localhost:3000/api/listingData/69',
       success: (result) => {
         this.setState({
           cost: result.perNight,
@@ -49,9 +55,22 @@ class App extends React.Component {
     });
   }
 
+  getReservations () {
+    $.ajax({
+      url: 'http://localhost:3000/api/reservations/1',
+      success: (result) => {
+        this.setState({
+          reservations: result,
+        })
+      },
+    });
+  }
+
   onAddGuest(string) {
-    if (this.state.adultsChosen + this.state.childrenChosen === this.state.guestsAllowed) {
+    if (string === "childrenChosen" || string == "adultsChosen") {
+      if (this.state.adultsChosen + this.state.childrenChosen === this.state.guestsAllowed) {
       return;
+      }
     } else if (string === "infantsChosen") {
       if (this.state.guestsInfants === this.state.infantsChosen) {
         return;
@@ -81,10 +100,36 @@ class App extends React.Component {
     this.setState(object)
   }
 
+  onSelectDate(startEnd, day, month, year) {
+    var Obj = {}
+    Obj[startEnd] = {};
+    Obj[startEnd].day = day;
+    Obj[startEnd].month = month;
+    Obj[startEnd].year = year;
+    this.setState(Obj)
+  }
+
+  onClearDates() {
+    this.setState({
+      startDate: null,
+      endDate: null,
+    })
+  }
+
+  closeModal() {
+    window.onclick = function() {
+      this.setState({
+        start: false,
+        end: false,
+      })
+    }
+  }
   render () {
     return (
       <div>
-        <OuterComponent state = {this.state} onAdd = {this.onAddGuest.bind(this)} onSub = {this.onSubGuest.bind(this)}/>
+        <OuterComponent state = {this.state} onAdd = {this.onAddGuest.bind(this)} onSub = {this.onSubGuest.bind(this)}
+          onSelect = {this.onSelectDate.bind(this)} onClear = {this.onClearDates.bind(this)}
+        />
         <ReportListing/>
       </div>
     )

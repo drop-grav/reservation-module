@@ -11,15 +11,26 @@ border-color: #DCDCDC;
 border-style: solid;
 border-width: 1px;
 border-radius: 5px;
-color: white;
 background-color:  #ff3333;
+color: white;
 font-family:Roboto,Helvetica Neue,sans-serif;
 font-size: 17px;
 font-weight: bold;
+transition: box-shadow .3s;
+&:focus {
+  outline: 0;
+};
 &:hover {
   cursor: pointer;
 }
+&:active {
+  background-color: #DC143C;
+  outline: 0;
+  box-shadow :  0 0 0 5px white, 0 0 0 6px #808080;
+}
 `;
+
+StyledButton.displayName = "StyledButton"
 
 const ReservedReminder = styled.div`
 padding-top: 15px;
@@ -33,11 +44,12 @@ width: 100%;
 text-align: center;
 `;
 
+ReservedReminder.displayName = 'ReservedReminder'
 
 function ReservationButton (props) {
   return (
     <div>
-      <StyledButton> Reserve </StyledButton>
+      <StyledButton>Reserve</StyledButton>
       <ReservedReminder>You won't be charged yet</ReservedReminder>
     </div>
   )

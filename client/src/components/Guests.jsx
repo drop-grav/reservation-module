@@ -40,6 +40,9 @@ const GuestsWords = styled.div`
   font-family:Roboto,Helvetica Neue,sans-serif;
   font-size: 17px;
   color: #404040;
+  background: ${props => props.show ? "#80fff5":" white"}
+  border: ${props => props.show ? "1px solid #80fff5" : "none"}
+  border-radius: 3px;
 `;
 
 const ArrowDown = styled.i`
@@ -72,6 +75,24 @@ class Guests extends React.Component {
       show: false
     }
     this.showGuestsModal = this.showGuestsModal.bind(this)
+    this.setWrapperRef = this.setWrapperRef.bind(this);
+    this.handleClickOutside = this.handleClickOutside.bind(this);
+  }
+
+  componentDidMount() {
+    document.addEventListener('mousedown', this.handleClickOutside);
+  }
+
+  setWrapperRef(node) {
+    this.wrapperRef = node;
+  }
+
+  handleClickOutside(event) {
+    if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
+      this.setState({
+        show: false,
+      })
+    }
   }
 
   showGuestsModal(boolean) {
@@ -87,21 +108,21 @@ class Guests extends React.Component {
 
   render () {
     const numGuests = this.props.state.adultsChosen + this.props.state.childrenChosen
-    const word = numGuests === 1 ? "guest ": "guests ";
+    const word = numGuests === 1 ? "guest": "guests";
     const infantWord = this.props.state.infantsChosen === 0 ? "" :
       this.props.state.infantsChosen === 1 ? `, ${this.props.state.infantsChosen} infant` : `, ${this.props.state.infantsChosen} infants`
     return (
-      <div>
+      <div ref = {this.setWrapperRef}>
         <GuestsWord>Guests</GuestsWord>
         <GuestsBox onClick = {() => this.showGuestsModal(this.state.show)}>
           <GuestsButton>
-            <GuestsWords>
+            <GuestsWords show = {this.state.show}>
               {numGuests} {word} {infantWord}
             </GuestsWords>
             {this.renderArrow()}
           </GuestsButton>
         </GuestsBox>
-        <GuestsModal show = {this.state.show} showGuestsModal = {this.showGuestsModal} state = {this.props.state}
+        <GuestsModal id = {"guestsModal"} show = {this.state.show} showGuestsModal = {this.showGuestsModal} state = {this.props.state}
         onAdd = {this.props.onAdd} onSub = {this.props.onSub}
         ></GuestsModal>
       </div>

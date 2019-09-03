@@ -10,23 +10,28 @@ color: #505050;
 align-items: baseline;
 padding-bottom: 20px;
 `;
+StyledDiv.displayName = 'StyledDiv'
 
 const Stars = styled.div`
 padding-left: 5px;
 display: flex;
 `;
+Stars.displayName = `Stars`
+
 //for the stars that are full styling
 const StarFull = styled.div`
 max-width: 100%;
 overflow: hidden;
 color: green;
 `;
+StarFull.displayName = `StarFull`
 // for the stars that are half styling
 const StarHalf = styled.div`
 max-width:19%;
 overflow: hidden;
 color: green;
 `;
+StarHalf.displayName = `StarHalf`
 
 function Reviews (props) {
   //for calculating the stars full and half
@@ -44,8 +49,8 @@ function Reviews (props) {
   return (
     <StyledDiv>
       <Stars>
-        {starsFull.map(star => <StarFull>{star}</StarFull>)}
-        {starsHalf.map(star => <StarHalf>{star}</StarHalf>)}
+        {starsFull.map((star, i) => <StarFull key = {i}>{star}</StarFull>)}
+        {starsHalf.map((star, i) => <StarHalf key = {i}>{star}</StarHalf>)}
       </Stars>
      {props.ratingAmount}
     </StyledDiv>

@@ -8,8 +8,11 @@ font-weight: bold;
 color: #383838;
 padding-right: 3px;
 `;
-const notEnlargedDiv = styled.div`
+EnlargedDiv.displayName = "EnlargedDiv"
+
+const NotEnlargedDiv = styled.div`
 `;
+NotEnlargedDiv.displayName = "NotEnlargedDiv"
 
 const StyledDiv = styled.div`
 font-family:Roboto,Helvetica Neue,sans-serif;
@@ -25,7 +28,7 @@ function Costs (props) {
   return (
     <StyledDiv>
       <EnlargedDiv>${props.cost}</EnlargedDiv>
-      <notEnlargedDiv> per night</notEnlargedDiv>
+      <NotEnlargedDiv>per night</NotEnlargedDiv>
     </StyledDiv>
   )
 }
