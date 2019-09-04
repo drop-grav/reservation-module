@@ -202,9 +202,6 @@ class Calendar extends React.Component {
     return ` ${months[this.state.month]} ${this.state.year}`
   }
 
-  selectDates() {
-    document.getElementById
-  }
   onHoverDate(number) {
     if (number <=31) {
       this.setState({
@@ -216,6 +213,7 @@ class Calendar extends React.Component {
       selectedDate:null,
     })
   }
+
   renderDay() {
     //for padding number with 0
     const zeroPad = (value, length) => {
@@ -293,8 +291,8 @@ class Calendar extends React.Component {
     }
     //if there's a blackout date, then make a blackout date variable
     var blackDate = null;
-    if (this.state.blackDate !== null) {
-      let blackout = this.state.blackDate
+    if (this.props.state.blackDate !== null) {
+      let blackout = this.props.state.blackDate
       blackDate = new Date(blackout.year, blackout.month, blackout.day)
     }
   //for making the days to put in//
@@ -343,10 +341,8 @@ class Calendar extends React.Component {
             blackout = new Date(this.state.year, this.state.month, i)
             blackDate = {year: blackout.getFullYear(), month: blackout.getMonth(), day: i + 1}
           }
-          if (this.state.blackDate === null && startDate !== null && blackout > startDate) {
-            this.setState({
-              blackDate: blackDate,
-            })
+          if (this.props.state.blackDate === null && startDate !== null && blackout > startDate) {
+            this.props.onBlack(blackDate)
             return;
           }
         }
@@ -473,19 +469,21 @@ class Calendar extends React.Component {
       })
       return;
     }
-    if ((stateDate.day !== propDate.day || stateDate.month !== propDate.month || stateDate.year !== propDate.year || propDate === null) && this.props.state.show === false) {
+    if ((stateDate.day !== propDate.day || stateDate.month !== propDate.month || stateDate.year !== propDate.year || propDate === null || propDate === null)) {
+      console.log("hitting")
       this.setState({
         startDate: propDate,
-        blackDate: null,
-      })
+      }, ()=> {this.renderDay()})
+      this.props.onBlack(null)
+      return;
     }
   }
 
   onReset() {
     this.setState({
       startDate: null,
-      blackDate: null,
     })
+    this.props.onBlack(null)
   }
 
   render () {
@@ -514,10 +512,12 @@ class Calendar extends React.Component {
           {weekName.map(name =><WeekWord>{name}</WeekWord>)}
         </WeekWords>
         <TableDates>
+          <tbody>
             {this.renderDay()}
+          </tbody>
         </TableDates>
         <CloseButton>
-          <CloseButtonWords onClick = {() => {this.props.onClear(); this.onReset(); this.props.onSwitch()}}>
+          <CloseButtonWords onClick = {() => {this.props.onClear(); this.onReset(); this.props.onSwitch(); this.blackoutNull()}}>
             Clear Dates
           </CloseButtonWords>
         </CloseButton>

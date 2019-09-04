@@ -3,9 +3,12 @@ const app = express()
 const port = 3000
 const bodyParser = require('body-parser');
 const db = require('../database/index.js');
+const cors = require('cors')
 
-//setting up server and parse data
+app.use(cors())
 app.use(express.static('public'))
+//setting up server and parse data
+app.use(`/listing/:id`,express.static('public'))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -28,4 +31,4 @@ app.get('/api/reservations/:listingid', (req, res) => {
 })
 
 //start up the listening on the port
-app.listen(port, ()=> console.log(`Reservations module listening on port ${port}`))
+  app.listen(port, ()=> console.log(`Reservations module listening on port ${port}`))

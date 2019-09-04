@@ -52,8 +52,8 @@ const ArrowRight = styled.div`
 const StyledCheck = styled.button`
   width: 60%;
   outline: 0;
-  background: ${props => props.start || props.end ? "#80fff5":" white"}
-  border: ${props => props.start  || props.end ? "1px solid #80fff5" : "none"}
+  background: ${props => props.start === true || props.end === true ? "#80fff5":" white"}
+  border: ${props => props.start === true  || props.end === true ? "1px solid #80fff5" : "none"}
   border-radius: 3px;
 `;
 
@@ -164,7 +164,7 @@ class Dates extends React.Component {
         <DatesWord>Dates</DatesWord>
         <StartCalendar show = {this.state.start} onShow = {this.onShow.bind(this)} state = {this.props.state} key = {"startCalendar"} onSelect = {this.props.onSelect} onClear = {this.props.onClear} onSwitch = {this.onSwitch.bind(this)}
         />
-        <EndCalendar show = {this.state.end} onShow = {this.onShow.bind(this)} state = {this.props.state} key = {"endCalendar"} onSelect = {this.props.onSelect} onClear = {this.props.onClear} onSwitch = {this.onSwitch.bind(this)}
+        <EndCalendar show = {this.state.end} onShow = {this.onShow.bind(this)} state = {this.props.state} key = {"endCalendar"} onSelect = {this.props.onSelect} onClear = {this.props.onClear} onSwitch = {this.onSwitch.bind(this)} onBlack = {this.props.onBlack}
         />
         <DatesBox>
           <StyledCheck onClick = {()=> this.onShow("start")} start = {this.state.start}>

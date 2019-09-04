@@ -419,7 +419,9 @@ class Calendar extends React.Component {
           {weekName.map(name =><WeekWord>{name}</WeekWord>)}
         </WeekWords>
         <TableDates weekCount = {this.state.weekCount}>
-          {this.renderDay()}
+          <tbody>
+            {this.renderDay()}
+          </tbody>
         </TableDates>
         <CloseButton>
           <CloseButtonWords onClick = {() => this.props.onClear()}>

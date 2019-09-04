@@ -26,6 +26,7 @@ class App extends React.Component {
       infantsChosen: 0,
       startDate: null,
       endDate: null,
+      blackDate: null,
     }
     this.onAddGuest = this.onAddGuest.bind(this);
     this.onSubGuest = this.onSubGuest.bind(this);
@@ -37,8 +38,10 @@ class App extends React.Component {
   }
 
   getListingdata () {
+    var listNum = document.URL.split("/")[4]
+    listNum = parseInt(listNum);
     $.ajax({
-      url: 'http://localhost:3000/api/listingData/69',
+      url: `http://localhost:3000/api/listingData/${listNum}`,
       success: (result) => {
         this.setState({
           cost: result.perNight,
@@ -113,6 +116,7 @@ class App extends React.Component {
     this.setState({
       startDate: null,
       endDate: null,
+      blackDate: null,
     })
   }
 
@@ -124,11 +128,18 @@ class App extends React.Component {
       })
     }
   }
+
+  onBlack (thing) {
+    this.setState({
+      blackDate: thing,
+    })
+  }
+
   render () {
     return (
       <div>
         <OuterComponent state = {this.state} onAdd = {this.onAddGuest.bind(this)} onSub = {this.onSubGuest.bind(this)}
-          onSelect = {this.onSelectDate.bind(this)} onClear = {this.onClearDates.bind(this)}
+          onSelect = {this.onSelectDate.bind(this)} onClear = {this.onClearDates.bind(this)} onBlack = {this.onBlack.bind(this)}
         />
         <ReportListing/>
       </div>

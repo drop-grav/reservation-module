@@ -20,7 +20,7 @@ function OuterComponent(props) {
     <StyledOuter>
       <CostsAndReviews state = {props.state}/>
       <FadedLine/>
-      <Reservations state = {props.state} onAdd = {props.onAdd} onSub = {props.onSub} onSelect = {props.onSelect} onClear = {props.onClear}
+      <Reservations state = {props.state} onAdd = {props.onAdd} onSub = {props.onSub} onSelect = {props.onSelect} onClear = {props.onClear} onBlack = {props.onBlack}
       />
       <Totals state = {props.state}/>
       <ReservationButton/>
