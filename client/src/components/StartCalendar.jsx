@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-Components'
+import styled from 'styled-components'
 
 const Modal = styled.div`
   z-index:1;
