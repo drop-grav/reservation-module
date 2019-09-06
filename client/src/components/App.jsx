@@ -39,7 +39,6 @@ class App extends React.Component {
 
   getListingdata () {
     var listNum = document.URL.split("/")[4]
-    console.log(listNum)
     listNum = parseInt(listNum);
     $.ajax({
       url: `http://localhost:3002/api/listingData/${listNum}`,
