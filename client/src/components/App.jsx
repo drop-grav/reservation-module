@@ -4,11 +4,19 @@ import OuterComponent from './outerComponent.jsx'
 import ReportListing from './ReportListing.jsx'
 import $ from 'jquery'
 
+const OuterComp = styled.div`
+z-index: 999;
+position: absolute;
+left: 850px;
+top: 0px;
+`;
+
 
 class App extends React.Component {
   constructor (props) {
     super (props);
     this.state = {
+      yindex: window.scrollY,
 //pulled from server
       cost: null,
       rating: null,
@@ -139,12 +147,12 @@ class App extends React.Component {
 
   render () {
     return (
-      <div>
+      <OuterComp>
         <OuterComponent state = {this.state} onAdd = {this.onAddGuest.bind(this)} onSub = {this.onSubGuest.bind(this)}
           onSelect = {this.onSelectDate.bind(this)} onClear = {this.onClearDates.bind(this)} onBlack = {this.onBlack.bind(this)}
         />
         <ReportListing/>
-      </div>
+      </OuterComp>
     )
   }
 }
