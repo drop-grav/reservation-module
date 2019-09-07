@@ -49,7 +49,7 @@ class App extends React.Component {
     var listNum = document.URL.split("/")[4]
     listNum = parseInt(listNum);
     $.ajax({
-      url: `http://localhost:3002/api/listingData/${listNum}`,
+      url: `http://18.219.238.14:3002/api/listingData/${listNum}`,
       success: (result) => {
         this.setState({
           cost: result.perNight,
@@ -70,7 +70,7 @@ class App extends React.Component {
     var listNum = document.URL.split("/")[4]
     listNum = parseInt(listNum);
     $.ajax({
-      url: `http://localhost:3002/api/reservations/${listNum}`,
+      url: `http://18.219.238.14:3002/api/reservations/${listNum}`,
       success: (result) => {
         this.setState({
           reservations: result,
