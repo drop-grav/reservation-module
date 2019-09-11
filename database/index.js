@@ -24,7 +24,16 @@ var getReservations = (id, callback) => {
     }
   })
 }
+
+// create reservation
+// var createReservation = (id, reservationInfo, callback) => {
+//   connection.query(`INSERT INTO reservedDates (ID, startDate, endDate, numGuests, numInfants, listingID) VALUES (NULL, "${reservationInfo.startDate.year}-${reservationInfo.startDate.month}-${reservationInfo.startDate.day", "${ reservationInfo.endDate.year } - ${ reservationInfo.endDate.month } - ${ reservationInfo.} ")`)
+// }
+
+// update reservation
+
+// delete reservation
 module.exports = {
   getListing,
-  getReservations,
+  getReservations
 }

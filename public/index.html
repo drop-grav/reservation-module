@@ -1,16 +1,21 @@
 <html>
-  <head>
-  </head>
-  <body>
-    <div id="Reservations"></div>
-    <script src = "http://18.219.238.14:3002/bundle.js" crossorigin></script>
-    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
-    <script>
-      ReactDOM.render(
+
+<head>
+</head>
+
+<body>
+  <div id="Reservations"></div>
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="http://localhost:3002/bundle.js" crossorigin></script>
+  <!-- <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script> -->
+  <script>
+    ReactDOM.render(
       React.createElement(Reservations.default),
       document.getElementById('Reservations')
-      );
-    </script>
-  </body>
+    );
+  </script>
+</body>
+
 </html>

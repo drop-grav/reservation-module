@@ -13,11 +13,11 @@ top: 0px;
 
 
 class App extends React.Component {
-  constructor (props) {
-    super (props);
+  constructor(props) {
+    super(props);
     this.state = {
       yindex: window.scrollY,
-//pulled from server
+      //pulled from server
       cost: null,
       rating: null,
       ratingAmount: null,
@@ -28,7 +28,7 @@ class App extends React.Component {
       occupancyFee: null,
       daysMinimum: null,
       reservations: null,
-//choices made in app
+      //choices made in app
       adultsChosen: 1,
       childrenChosen: 0,
       infantsChosen: 0,
@@ -45,11 +45,11 @@ class App extends React.Component {
     this.getReservations()
   }
 
-  getListingdata () {
+  getListingdata() {
     var listNum = document.URL.split("/")[4]
     listNum = parseInt(listNum);
     $.ajax({
-      url: `http://18.219.238.14:3002/api/listingData/${listNum}`,
+      url: `http://localhost:3002/api/listingData/${listNum}`,
       success: (result) => {
         this.setState({
           cost: result.perNight,
@@ -66,11 +66,11 @@ class App extends React.Component {
     });
   }
 
-  getReservations () {
+  getReservations() {
     var listNum = document.URL.split("/")[4]
     listNum = parseInt(listNum);
     $.ajax({
-      url: `http://18.219.238.14:3002/api/reservations/${listNum}`,
+      url: `http://localhost:3002/api/reservations/${listNum}`,
       success: (result) => {
         this.setState({
           reservations: result,
@@ -82,7 +82,7 @@ class App extends React.Component {
   onAddGuest(string) {
     if (string === "childrenChosen" || string == "adultsChosen") {
       if (this.state.adultsChosen + this.state.childrenChosen === this.state.guestsAllowed) {
-      return;
+        return;
       }
     } else if (string === "infantsChosen") {
       if (this.state.guestsInfants === this.state.infantsChosen) {
@@ -131,7 +131,7 @@ class App extends React.Component {
   }
 
   closeModal() {
-    window.onclick = function() {
+    window.onclick = function () {
       this.setState({
         start: false,
         end: false,
@@ -139,19 +139,19 @@ class App extends React.Component {
     }
   }
 
-  onBlack (thing) {
+  onBlack(thing) {
     this.setState({
       blackDate: thing,
     })
   }
 
-  render () {
+  render() {
     return (
       <OuterComp>
-        <OuterComponent state = {this.state} onAdd = {this.onAddGuest.bind(this)} onSub = {this.onSubGuest.bind(this)}
-          onSelect = {this.onSelectDate.bind(this)} onClear = {this.onClearDates.bind(this)} onBlack = {this.onBlack.bind(this)}
+        <OuterComponent state={this.state} onAdd={this.onAddGuest.bind(this)} onSub={this.onSubGuest.bind(this)}
+          onSelect={this.onSelectDate.bind(this)} onClear={this.onClearDates.bind(this)} onBlack={this.onBlack.bind(this)}
         />
-        <ReportListing/>
+        <ReportListing />
       </OuterComp>
     )
   }
