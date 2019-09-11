@@ -3,16 +3,22 @@ Reservations API
 ROUTES:
 
 ---------------------------------------------------------------------------------
-Get reservations by listing ID
-GET: /api/reservations/:listingid
+Get reservations by listing ID.
 
-Uses the listing ID in req.params to find all reservations for a particular listing and return them in JSON object.
+`GET: /api/listings/:listingid/reservations`
+
+Uses the listing ID to find all reservations for a particular listing and return them in JSON object.
 
 eg:
-/api/reservations/35
+
+`/api/reservations/35`
+
 On success:
-Status Code: 200
+
+`Status Code: 200`
+
 Return Data:
+``` javascript
 [{
   ID: 1,
   startDate: '2019-09-16',
@@ -21,22 +27,31 @@ Return Data:
   numInfants: '0',
   listingID: 35
 }]
+```
 
 On failure:
-Status Code: 204
-Return Data: {}
+
+`Status Code: 404`
+
+Return Data: `{}`
 
 ---------------------------------------------------------------------------------
-Get a single reservation by reservation ID
-GET /api/reservation/:reservationid
+Get a single reservation by reservation ID.
 
-Uses the reservation ID in req.params to find a particicular reservation and return it.
+`GET: /api/reservations/:reservationid`
+
+Uses the reservation ID to find a particicular reservation and return it.
 
 eg:
-/api/reservation/4
+
+`/api/reservation/4`
+
 On success:
-Status Code: 200
+
+`Status Code: 200`
+
 Return Data:
+``` javascript
 {
   ID: 4,
   startDate: '2019-12-13',
@@ -45,23 +60,32 @@ Return Data:
   numInfants: '0',
   listingID: 35
 }
+```
 
 On failure:
-Status Code: 204
-Return Data: {}
+
+`Status Code: 404`
+
+Return Data: `{}`
 
 
 ---------------------------------------------------------------------------------
-Create a new reservation
-POST: /api/reservations/:listingid
+Create a new reservation.
 
-Creates a new reservation for the listing ID req.params. The reservation information is passed as part of the req.body. Returns newly created reservation on success.
+`POST: /api/listings/:listingid/reservations`
+
+Creates a new reservation for the listing ID. The reservation information is passed as part of the request body. Returns newly created reservation on success.
 
 eg:
-/api/reservations/13
+
+`/api/reservations/13`
+
 On success:
-Status Code 201
+
+`Status Code 201`
+
 Return Data:
+``` javascript
 {
   ID: 15,
   startDate: '2019-10-15',
@@ -70,23 +94,31 @@ Return Data:
   numInfants: '0',
   listingID: 13
 }
+```
 
 On failure:
-Status Code 204
+
+`Status Code 400`
 
 
 
 ---------------------------------------------------------------------------------
+Update a reservation.
 
-PUT: /api/reservations/:reservationid
+`PUT: /api/reservations/:reservationid`
 
-Updates an existing reservation for a listing.  Uses req.params to pass the target reservations ID, and use req.body to pass the updated reservation information. Return updated reservation object on success.
+Updates an existing reservation for a listing. Uses the request body to pass the updated reservation information. Return updated reservation object on success. Requires reentry of all fields even if they are not changing.
 
 eg:
-/api/reservations/12
+
+`/api/reservations/12`
+
 On success:
-Status Code: 201
+
+`Status Code: 201`
+
 Return Data:
+``` javascript
 {
   ID: 15,
   startDate: '2019-10-06',
@@ -95,29 +127,29 @@ Return Data:
   numInfants: '0',
   listingID: 13
 }
+```
 
 On failure:
-Status Code 204
+
+`Status Code 404`
 
 ---------------------------------------------------------------------------------
+Delete a reservation.
 
-DELETE: /api/reservations/reservationid
+`DELETE: /api/reservations/:reservationid`
 
-Deletes an existing reservation passing the id of the target reservation to delete into req.params. Return object deleted on success.
+Deletes an existing reservation.
 
 eg:
-/api/reservations/12
+
+`/api/reservations/12`
+
 On success:
-Status Code: 200
-Return Data: {
-  ID: 12,
-  startDate: '2019-04-20',
-  endDate: '2019-05-08',
-  numGuests: '2',
-  numInfants: '0',
-  listingID: 15
-}
+
+`Status Code: 200`
+
 
 On failure:
-Status Code: 204
+
+`Status Code: 404`
 
