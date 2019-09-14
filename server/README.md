@@ -11,7 +11,7 @@ Uses the listing ID to find all reservations for a particular listing and return
 
 eg:
 
-`/api/reservations/35`
+`/api/reservations/35/reservations`
 
 On success:
 
@@ -78,7 +78,7 @@ Creates a new reservation for the listing ID. The reservation information is pas
 
 eg:
 
-`/api/reservations/13`
+`/api/listings/13/reservations/`
 
 On success:
 

@@ -1,30 +1,29 @@
-DROP DATABASE IF EXISTS reservationsModule;
+DROP DATABASE IF EXISTS dgdb;
 
-CREATE DATABASE reservationsModule;
+CREATE DATABASE dgdb;
 
-USE reservationsModule;
+USE dgdb;
 
 CREATE TABLE listing (
-  ID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  perNight int NOT NULL,
-  perNightX int,
-  Rating DECIMAL (2,1),
-  RatingAmount int,
-  guestsAllowed int NOT NULL,
-  guestsInfants int,
-  cleaningFee int,
-  serviceFee int,
-  occupancyFee int,
-  daysMinimum int
+  id SERIAL PRIMARY KEY,
+  perNight INT NOT NULL,
+  rating DECIMAL,
+  ratingAmount INT,
+  guestsAllowed INT NOT NULL,
+  guestsInfants INT,
+  cleaningFee DECIMAL,
+  serviceFee DECIMAL,
+  occupancyFee DECIMAL,
+  daysMinimum INT
 );
 
 CREATE TABLE reservedDates (
-  ID INT PRIMARY KEY AUTO_INCREMENT,
+  id SERIAL PRIMARY KEY,
   startDate DATE NOT NULL,
   endDate DATE NOT NULL,
   numGuests INT NOT NULL,
   numInfants INT,
   listingID INT NOT NULL,
   FOREIGN KEY (listingID)
-    REFERENCES listing(ID)
+    REFERENCES listing(id)
 );
