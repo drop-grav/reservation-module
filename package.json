@@ -12,11 +12,20 @@
     "start": "nodemon ./server/index.js",
     "DB": "mysql -u root -p < database/Schema.sql",
     "seed": "node ./database/seed.js",
-    "test": "jest ./client/src/test"
+    "test": "jest ./client/src/test",
+    "cassandra:init": "cqlsh < database/cassandraSchema.cql",
+    "seed:generate-csv": "NUM_LISTINGS=10000000 node --max-old-space-size=8000 database/reservationsCSVGen.js && NUM_LISTINGS=10000000 node --max-old-space-size=8000 database/listingCSVGen.js",
+    "create:db-postgres": "psql < database/postgresCreateDB.sql",
+    "create:listing-postgres": "psql dgdb < database/createListingTable.sql",
+    "create:reservation-postgres": "psql dgdb < database/createReservationTable.sql",
+    "seed:insert-data": "cqlsh < database/seedCassandra.cql",
+    "seed-postgres:insert-data": "psql dgdb < database/seedPostgres.sql",
+    "full-seed": "npm run cassandra:init && npm run create:db-postgres && npm run create:listing-postgres && npm run create:reservation-postgres && npm run seed:generate-csv && npm run seed:insert-data && npm run seed-postgres:insert-data"
   },
   "dependencies": {
     "Faker": "^0.7.2",
     "babel-jest": "^24.9.0",
+    "big-csv": "0.0.1",
     "cors": "^2.8.5",
     "csv-write-stream": "^2.0.0",
     "express": "^4.17.1",
