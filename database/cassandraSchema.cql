@@ -8,9 +8,9 @@ CREATE TABLE dgdb.listing (
   RatingAmount INT,
   guestsAllowed INT,
   guestsInfants INT,
-  cleaningFee DECIMAl,
-  serviceFee DECIMAl,
-  occupancyFee DECIMAl,
+  cleaningFee DECIMAL,
+  serviceFee DECIMAL,
+  occupancyFee DECIMAL,
   daysMinimum INT,
 
 );

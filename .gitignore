@@ -24,8 +24,9 @@ coverage
 build/
 dist/
 
-
+reservations1.csv
 reservations.csv
 listing.csv
 users.csv
+config.js
 

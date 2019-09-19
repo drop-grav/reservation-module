@@ -1,6 +1,6 @@
 module.exports = {
   // host: "172.17.0.3 ",
-  user: 'root',
+  user: 'jared',
   password: 'password',
-  database: 'reservationsModule'
+  database: 'dgdb'
 };

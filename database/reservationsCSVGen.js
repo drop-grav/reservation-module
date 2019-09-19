@@ -2,11 +2,12 @@ const faker = require('faker');
 const fs = require('fs')
 const path = require('path')
 
-const writeData = fs.createWriteStream(path.join(__dirname, 'reservations.csv'));
-writeData.write('id, startDate, endDate, numGuests, numInfants, listingID\n', 'utf8');
+
+const writeData = fs.createWriteStream(path.join(__dirname, 'reservations1.csv'));
+writeData.write('startDate, endDate, numGuests, numInfants, listingID\n', 'utf8');
 
 function writeFiles(writer, encoding, callback) {
-  let i = process.env.NUM_LISTINGS;
+  let i = process.env.NUM_LISTINGS || 10000000;
   let listingId = 1
   let listing = 1
   let j = faker.random.number({ min: 2, max: 15 })
@@ -26,7 +27,6 @@ function writeFiles(writer, encoding, callback) {
         endDateObj.month = faker.random.number({ min: startDateObj.month, max: 12 });
         endDateObj.day = faker.random.number({ min: endDateObj.month === startDateObj.month ? startDateObj.day : 1, max: [9, 11].includes(endDateObj.month) ? 30 : 31 })
 
-        const id = listing;
 
         const startDate = String(startDateObj.year) + '-' + String(startDateObj.month).padStart(2, '0') + '-' + String(startDateObj.day).padStart(2, '0');
 
@@ -35,7 +35,7 @@ function writeFiles(writer, encoding, callback) {
         const numGuests = faker.random.number({ min: 1, max: 3 });
         const numInfants = faker.random.number({ min: 0, max: 2 });
 
-        const data = `${id},${startDate},${endDate},${numGuests},${numInfants},${listingId}\n`
+        const data = `${startDate},${endDate},${numGuests},${numInfants},${listingId}\n`
         listing += 1;
 
 
