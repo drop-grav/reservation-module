@@ -2,13 +2,9 @@ const express = require('express')
 const app = express()
 const port = 3002
 const bodyParser = require('body-parser');
-const db = require('../database/index.js');
 const cors = require('cors')
 const { getListingDataByListingId, getReservationsByListingId, getReservationByReservationId, createReservation, updateReservation, deleteReservation } = require('../database/controllers.js');
-const { Client } = require('pg');
 
-const client = new Client({ database: 'dgdb', user: 'jared', password: 'password' });
-client.connect()
 
 
 app.use(cors())
@@ -40,7 +36,7 @@ app.get('/api/reservations/:reservationid', (req, res) => {
 // create new reservation
 app.post('/api/listings/:listingid/reservations', (req, res) => {
   const { listingid } = req.params;
-  const { reservationData } = req.body;
+  const reservationData = req.body;
   createReservation(req, res, listingid, reservationData);
 })
 

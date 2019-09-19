@@ -1,5 +1,6 @@
 const { Client } = require('pg');
-const client = new Client({ database: 'dgdb', user: 'jared', password: 'password' });
+const config = require('./config.js')
+const client = new Client(config);
 
 client.connect();
 
@@ -27,8 +28,8 @@ const createReservation = (req, res, listingid, reservationData) => {
     values: [reservationData.startDate, reservationData.endDate, reservationData.numGuests, reservationData.numInfants, listingid]
   }
   client.query(query)
-    .then(data => res.status(201))
-    .catch(err => res.status(400))
+    .then(data => res.status(201).end())
+    .catch(err => res.status(400).end())
 }
 
 const updateReservation = (req, res, reservationid, reservationData) => {
@@ -37,7 +38,6 @@ const updateReservation = (req, res, reservationid, reservationData) => {
   Object.keys(reservationData).forEach(item => {
     set.push(`${item} = ($${counter += 1})`)
   })
-  console.log(set)
   const query = {
     text: `UPDATE reserveddates SET ${set} WHERE id = ($${counter += 1})`,
     values: Object.values(reservationData).concat(Number(reservationid))
