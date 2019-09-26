@@ -20,7 +20,7 @@
     "create:reservation-postgres": "psql dgdb < database/createReservationTable.sql",
     "seed:insert-data": "cqlsh < database/seedCassandra.cql",
     "seed-postgres:insert-data": "psql dgdb < database/seedPostgres.sql",
-    "full-seed": "npm run cassandra:init && npm run create:db-postgres && npm run create:listing-postgres && npm run create:reservation-postgres && npm run seed:generate-csv && npm run seed:insert-data && npm run seed-postgres:insert-data"
+    "full-seed": "npm run create:db-postgres && npm run create:listing-postgres && npm run create:reservation-postgres && npm run seed:generate-csv && npm run seed:insert-data && npm run seed-postgres:insert-data"
   },
   "dependencies": {
     "Faker": "^0.7.2",
@@ -33,6 +33,7 @@
     "jquery": "^3.4.1",
     "mysql": "^2.17.1",
     "mysql2": "^1.6.5",
+    "newrelic": "^5.11.0",
     "nodemon": "^1.19.1",
     "pg": "^7.12.1",
     "pug": "^2.0.4",

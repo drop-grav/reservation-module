@@ -45,22 +45,26 @@ class App extends React.Component {
     this.getReservations()
   }
 
+
   getListingdata() {
+    console.log('here')
     var listNum = document.URL.split("/")[4]
     listNum = parseInt(listNum);
+    console.log(listNum)
     $.ajax({
-      url: `http://localhost:3002/api/listingData/${listNum}`,
+      url: `http://3.14.6.11:3002/api/listings/${listNum}`,
       success: (result) => {
+        console.log(result[0])
         this.setState({
-          cost: result.perNight,
-          rating: result.Rating,
-          ratingAmount: result.RatingAmount,
-          guestsAllowed: result.guestsAllowed,
-          guestsInfants: result.guestsInfants,
-          cleaningFee: result.cleaningFee,
-          serviceFee: result.serviceFee,
-          occupancyFee: result.occupancyFee,
-          daysMinimum: result.daysMinimum,
+          cost: Number(result[0].pernight),
+          rating: Number(result[0].rating),
+          ratingAmount: Number(result[0].ratingamount),
+          guestsAllowed: Number(result[0].guestsallowed),
+          guestsInfants: Number(result[0].guestsinfants),
+          cleaningFee: Number(result[0].cleaningfee),
+          serviceFee: Number(result[0].servicefee),
+          occupancyFee: Number(result[0].occupancyfee),
+          daysMinimum: Number(result[0].daysminimum),
         })
       },
     });
@@ -70,7 +74,7 @@ class App extends React.Component {
     var listNum = document.URL.split("/")[4]
     listNum = parseInt(listNum);
     $.ajax({
-      url: `http://localhost:3002/api/reservations/${listNum}`,
+      url: `http://3.14.6.11:3002/api/listings/${listNum}/reservations`,
       success: (result) => {
         this.setState({
           reservations: result,

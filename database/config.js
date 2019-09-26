@@ -1,6 +1,6 @@
 module.exports = {
-  // host: "172.17.0.3 ",
-  user: 'jared',
-  password: 'password',
+  host: "3.19.185.53",
+  user: 'power_user',
+  password: 'hellosdc',
   database: 'dgdb'
 };

@@ -1,3 +1,4 @@
+require('newrelic');
 const express = require('express')
 const app = express()
 const port = 3002
@@ -7,9 +8,12 @@ const { getListingDataByListingId, getReservationsByListingId, getReservationByR
 
 
 
-app.use(cors())
+// app.use(cors())
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+  next();
+});
 app.use(express.static('public'))
-//setting up server and parse data
 app.use(`/listing/:id`, express.static('public'))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -17,6 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //get listing data according to the ID
 app.get('/api/listings/:id', (req, res) => {
   const { id } = req.params;
+  console.log('here')
   getListingDataByListingId(req, res, id);
 })
 
@@ -54,8 +59,4 @@ app.delete('/api/reservations/:reservationid', (req, res) => {
 
 })
 
-//
-
-
-//start up the listening on the port
 app.listen(port, () => console.log(`Reservations module listening on port ${port} `))
